@@ -1,0 +1,41 @@
+ 1  -  Workbook practice
+Create some variables with text objects, add some comments, and print the variables.
+
+Create some variables with some numbers. Do some simple math with the variables: try classic divison, floor division, and find the remainder of the division.
+
+
+     solution :
+
+       # text 
+            # declaration of variables
+               first_name = "ali"
+               last_name = "ahmed"
+
+            # print the variables
+               print(first_name)
+               print(last_name)
+
+
+       # numbers 
+            # declaration of variables
+                age = 16
+                year = 2010
+
+           # classic division
+
+             classic_Div = age / year 
+
+          # print division 
+            print(" classic division age/year = " , classic_Div )
+
+         # floor_Div  division
+              floor_Div = age // year
+              # print floor division 
+              print(" floor division  age/year = ", floor_Div)
+
+         # remainder  of division 
+
+              rem_Div = age % year
+              # print remainder  of division 
+              print(" remainder  of division  age % year = ", rem_Div)
+          
