@@ -1,0 +1,297 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMqBwncIEorIYXJJx2SB87X",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/hayetmece/python-workshop-basics01/blob/main/Data%20Analysis%20Basics-tp02\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**NumPy**\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "vow4_Peavq4V"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PKVAQycrlaln",
+        "outputId": "1b575cfb-37e4-4c11-e1a6-e5c81ccbfbf6"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "المصفوفة: [10 15 20 25 30 35 40 45 50]\n",
+            "الاقتطاع: [20 25 30 35]\n",
+            "المتوسط: 30.0\n",
+            "الانحراف المعياري: 12.909944487358056\n",
+            "[[1 2 3]\n",
+            " [4 5 6]]\n",
+            "العنصر: 6\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "arr = np.arange(10, 55, 5)\n",
+        "print(\"المصفوفة:\", arr)\n",
+        "sliced = arr[2:6]\n",
+        "print(\"الاقتطاع:\", sliced)\n",
+        "print(\"المتوسط:\", np.mean(arr))\n",
+        "print(\"الانحراف المعياري:\", np.std(arr))\n",
+        "matrix = np.arange(1, 7).reshape(2, 3)\n",
+        "print(matrix)\n",
+        "\n",
+        "print(\"العنصر:\", matrix[1, 2])"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Pandas** **Series**"
+      ],
+      "metadata": {
+        "id": "MhKdHhquv2Yg"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "prices = pd.Series(\n",
+        "    [100, 250, 180, 300, 150],\n",
+        "    index=['apple', 'banana', 'cherry', 'date', 'mango']\n",
+        ")\n",
+        "print(prices)\n",
+        "\n",
+        "print(\"سعر الفاكهة الثالثة:\", prices.iloc[2])\n",
+        "\n",
+        "prices_new = prices * 1.1\n",
+        "print(prices_new)\n",
+        "\n",
+        "print(\"متوسط السعر:\", prices_new.mean())\n",
+        "print(\"أغلى فاكهة:\", prices_new.idxmax())\n",
+        "print(\"سعرها:\", prices_new.max())\n"
+      ],
+      "metadata": {
+        "id": "vOUycnXXvCAF"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**DataFrame**"
+      ],
+      "metadata": {
+        "id": "weM3SIcNwBD1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data = {\n",
+        "    'Name': ['Ali', 'Sara', 'Omar', 'Lina', 'Yassine'],\n",
+        "    'Math': [90, 75, 88, 95, 60],\n",
+        "    'English': [86, 92, 70, 89, 80],\n",
+        "    'Science': [78, 85, 91, 87, 65]\n",
+        "}\n",
+        "df = pd.DataFrame(data)\n",
+        "print(df)\n",
+        "\n",
+        "print(df.head(3))\n",
+        "\n",
+        "print(df['Math'])\n",
+        "\n",
+        "print(df[df['Math'] > 80])\n",
+        "\n",
+        "print(df[(df['Math'] > 85) & (df['English'] > 85)])"
+      ],
+      "metadata": {
+        "id": "yb2xySnfvQxk"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**(GroupBy)**"
+      ],
+      "metadata": {
+        "id": "OJJEkwv5wL_8"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data = {\n",
+        "    'Product': ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C'],\n",
+        "    'Region':  ['North', 'North', 'North',\n",
+        "                'South', 'South', 'South',\n",
+        "                'East', 'East', 'East',\n",
+        "                'West', 'West', 'West'],\n",
+        "    'Sales':   [200, 150, 300, 220, 180, 250, 210, 170, 280, 190, 160, 310]\n",
+        "}\n",
+        "df = pd.DataFrame(data)\n",
+        "print(df)\n",
+        "\n",
+        "total_by_product = df.groupby('Product')['Sales'].sum()\n",
+        "print(total_by_product)\n",
+        "\n",
+        "avg_by_region = df.groupby('Region')['Sales'].mean()\n",
+        "print(avg_by_region)\n",
+        "\n",
+        "stats_by_product = df.groupby('Product')['Sales'].agg(['mean', 'max'])\n",
+        "print(stats_by_product)"
+      ],
+      "metadata": {
+        "id": "bzKdJG9QvXA8"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**(Matplotlib Pandas)**"
+      ],
+      "metadata": {
+        "id": "guPsYFh0wVaD"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "revenue_df = pd.DataFrame({\n",
+        "    'Quarter': ['Q1', 'Q2', 'Q3', 'Q4'],\n",
+        "    'Revenue': [12000, 15000, 14000, 18000]\n",
+        "})\n",
+        "print(revenue_df)\n",
+        "\n",
+        "plt.figure(figsize=(7, 4))\n",
+        "plt.plot(revenue_df['Quarter'], revenue_df['Revenue'], marker='o', color='blue')\n",
+        "plt.title('Revenue over Quarters')\n",
+        "plt.xlabel('Quarter')\n",
+        "plt.ylabel('Revenue')\n",
+        "plt.grid(True)\n",
+        "plt.show()\n",
+        "\n",
+        "plt.figure(figsize=(7, 4))\n",
+        "plt.bar(revenue_df['Quarter'], revenue_df['Revenue'], color='orange')\n",
+        "plt.title('Revenue Comparison by Quarter')\n",
+        "plt.xlabel('Quarter')\n",
+        "plt.ylabel('Revenue')\n",
+        "plt.show()\n",
+        "\n",
+        "scores_df = pd.DataFrame({\n",
+        "    'Student': [f'S{i}' for i in range(1, 21)],\n",
+        "    'Score': [55, 62, 67, 70, 72, 75, 78, 80, 82, 85,\n",
+        "              85, 88, 90, 91, 93, 95, 60, 68, 77, 84]\n",
+        "})\n",
+        "print(scores_df.head())\n",
+        "\n",
+        "plt.figure(figsize=(7, 4))\n",
+        "plt.hist(scores_df['Score'], bins=6, color='green', edgecolor='black')\n",
+        "plt.title('Distribution of Student Test Scores')\n",
+        "plt.xlabel('Score')\n",
+        "plt.ylabel('Number of Students')\n",
+        "plt.show()"
+      ],
+      "metadata": {
+        "id": "R_s0ku4QvbAp"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Iris**"
+      ],
+      "metadata": {
+        "id": "uJkIrUq_wnpI"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import seaborn as sns\n",
+        "import matplotlib.pyplot as plt\n",
+        "iris = sns.load_dataset('iris')\n",
+        "print(iris.head())\n",
+        "\n",
+        "virginica = iris[iris['species'] == 'virginica']\n",
+        "print(virginica.head())\n",
+        "\n",
+        "print(\"Min petal width:\", iris['petal_width'].min())\n",
+        "print(\"Max petal width:\", iris['petal_width'].max())\n",
+        "\n",
+        "avg_sepal = iris.groupby('species')['sepal_length'].mean()\n",
+        "print(avg_sepal)\n",
+        "print(\"Highest:\", avg_sepal.idxmax())\n",
+        "\n",
+        "plt.figure(figsize=(7, 5))\n",
+        "plt.scatter(iris['petal_length'], iris['petal_width'], color='purple', alpha=0.6)\n",
+        "plt.title('Petal Length vs Petal Width')\n",
+        "plt.xlabel('Petal Length')\n",
+        "plt.ylabel('Petal Width')\n",
+        "plt.grid(True)\n",
+        "plt.show()\n",
+        "avg_petal = iris.groupby('species')['petal_length'].mean()\n",
+        "plt.figure(figsize=(7, 5))\n",
+        "avg_petal.plot(kind='bar', color=['green', 'orange', 'blue'], edgecolor='black')\n",
+        "plt.title('Average Petal Length by Species')\n",
+        "plt.xlabel('Species')\n",
+        "plt.ylabel('Average Petal Length')\n",
+        "plt.xticks(rotation=0)\n",
+        "plt.show()"
+      ],
+      "metadata": {
+        "id": "6iSJGX2WvfQI"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
