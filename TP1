@@ -1,0 +1,362 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMeZ8GbVF/3EzS67f9JrGOV",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/MOUHAIMEN77/python-workshop-basics/blob/main/TP1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "47a80ca9"
+      },
+      "source": [
+        "### Part 1: Working with Text Variables"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dd2c91b4"
+      },
+      "source": [
+        "# Define string variables holding some text\n",
+        "greeting = \"Hello, Colab User!\"\n",
+        "topic = \"Python Basics\"\n",
+        "\n",
+        "# Print the text variables to the console\n",
+        "print(greeting)\n",
+        "print(\"Today we are practicing:\", topic)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "e3efe6a9"
+      },
+      "source": [
+        "### Part 2: Division and Arithmetic Operations"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "5a306d73"
+      },
+      "source": [
+        "# Define numeric variables\n",
+        "a = 17\n",
+        "b = 5\n",
+        "\n",
+        "# Classic division (returns a float)\n",
+        "classic_div = a / b\n",
+        "\n",
+        "# Floor division (rounds down to the nearest integer)\n",
+        "floor_div = a // b\n",
+        "\n",
+        "# Remainder (modulo operator)\n",
+        "remainder = a % b\n",
+        "\n",
+        "# Display the results\n",
+        "print(f\"Numbers used: a = {a}, b = {b}\")\n",
+        "print(f\"Classic Division (a / b): {classic_div}\")\n",
+        "print(f\"Floor Division (a // b): {floor_div}\")\n",
+        "print(f\"Remainder (a % b): {remainder}\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2564efc5"
+      },
+      "source": [
+        "### Exploring String Slicing, Immutability, and Methods"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "76994941"
+      },
+      "source": [
+        "p = \"Python\"\n",
+        "c = \"Coding\"\n",
+        "\n",
+        "# --- 1. Slicing and Indexing ---\n",
+        "# This will raise an IndexError because index 6 is out of bounds (indices are 0 to 5 for \"Python\").\n",
+        "try:\n",
+        "    print(p[6])\n",
+        "except IndexError as e:\n",
+        "    print(f\"p[6] Error: {e}\")\n",
+        "\n",
+        "# Slicing is more forgiving; index 6 is out of bounds but it simply returns an empty string \"\"\n",
+        "print(f\"p[6:] slice result: '{p[6:]}'\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "b22ef72a"
+      },
+      "source": [
+        "# --- 2. Step Slicing (Reversing) ---\n",
+        "# Using a step of -1 reverses the string.\n",
+        "print(f\"Reversed string: {p[::-1]}\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "7560cf7b"
+      },
+      "source": [
+        "# --- 3. Concatenation and Re-assignment ---\n",
+        "# Standard addition concatenates strings.\n",
+        "p += c\n",
+        "print(f\"After p += c: {p}\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "b251ba9f"
+      },
+      "source": [
+        "# --- 4. Immutability ---\n",
+        "# Strings in Python are immutable; you cannot edit them in-place.\n",
+        "p = \"Mython\"\n",
+        "try:\n",
+        "    p[0] = \"P\"\n",
+        "except TypeError as e:\n",
+        "    print(f\"p[0] = 'P' Error: {e} (Strings are immutable!)\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0b96e7b5"
+      },
+      "source": [
+        "### Testing Built-in String Methods"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1322dfef"
+      },
+      "source": [
+        "p = \"python\"\n",
+        "\n",
+        "# Let's run and display the result of each string method\n",
+        "print(\"Capitalize:\", p.capitalize())\n",
+        "print(\"Upper:\", p.upper())\n",
+        "print(\"Lower:\", p.lower())\n",
+        "print(\"Index of 'h':\", p.index('h'))\n",
+        "print(\"Find 'h':\", p.find('h'))\n",
+        "print(\"Join with comma:\", ','.join(p))\n",
+        "print(\"Split by 't':\", p.split('t'))\n",
+        "print(\"Replace 'p' with 'M':\", p.replace('p', 'M'))\n",
+        "print(\"Count 'p':\", p.count('p'))\n",
+        "print(\"Centered (20 chars, - padding):\", p.center(20, '-'))\n",
+        "print(\"Stripped string:\", \"   Python   \".strip())"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "c1033224"
+      },
+      "source": [
+        "### Part 3: List References vs. List Copies"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "0a962952"
+      },
+      "source": [
+        "rgb = [\"R\", \"G\", \"B\"]\n",
+        "rgb_copy = rgb  # This is NOT a copy; it is a reference alias pointing to the exact same list!\n",
+        "rgb_copy.append(\"A\")\n",
+        "\n",
+        "# Let's inspect the outputs\n",
+        "print(\"rgb_copy:\", rgb_copy)\n",
+        "print(\"rgb:\", rgb)  # Notice that 'rgb' also changed because they share the same memory address\n",
+        "print(\"id(rgb) == id(rgb_copy):\", id(rgb) == id(rgb_copy))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "48411ae1"
+      },
+      "source": [
+        "By slicing (`rgb[:]`), we create a brand new shallow copy of the list object, meaning changes to the copy will not affect the original list:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "f70f5fa2"
+      },
+      "source": [
+        "rgb = [\"R\", \"G\", \"B\"]\n",
+        "correct_rgb_copy = rgb[:]  # This creates an independent shallow copy!\n",
+        "correct_rgb_copy.append(\"A\")\n",
+        "\n",
+        "# Let's inspect the outputs now\n",
+        "print(\"correct_rgb_copy:\", correct_rgb_copy)\n",
+        "print(\"rgb:\", rgb)  # Notice that 'rgb' remains unchanged!\n",
+        "print(\"id(rgb) == id(correct_rgb_copy):\", id(rgb) == id(correct_rgb_copy))"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "a70e7bf1"
+      },
+      "source": [
+        "### Part 4: Counting Positive Numbers"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8b866ac0"
+      },
+      "source": [
+        "# Sample list of numbers\n",
+        "numbers = [-3, 5, -1, 7, 0, -8, 10]\n",
+        "\n",
+        "# Initialize the counter for positive numbers\n",
+        "positive_count = 0\n",
+        "\n",
+        "# Loop through each number in the list\n",
+        "for num in numbers:\n",
+        "    # Check if the number is positive\n",
+        "    if num > 0:\n",
+        "        positive_count += 1\n",
+        "\n",
+        "# Print the result\n",
+        "print(f\"Count of positive numbers: {positive_count}\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0f35c057"
+      },
+      "source": [
+        "### Part 5: Filtering Even Numbers with a Function"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "dacaebc6"
+      },
+      "source": [
+        "def filter_even_numbers(numbers):\n",
+        "    \"\"\"\n",
+        "    Returns a list of even numbers from a list.\n",
+        "    \"\"\"\n",
+        "    result = []\n",
+        "    for num in numbers:\n",
+        "        if num % 2 == 0:\n",
+        "            result.append(num)\n",
+        "    return result\n",
+        "\n",
+        "# Test the function\n",
+        "test_list = [1, 2, 3, 4, 5, 6, 7, 8]\n",
+        "even_numbers = filter_even_numbers(test_list)\n",
+        "print(f\"Original list: {test_list}\")\n",
+        "print(f\"Filtered even numbers: {even_numbers}\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ca343ea1"
+      },
+      "source": [
+        "### Part 6: Student Grades Analysis with Zip, Sets, and Dictionaries"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "474107bb"
+      },
+      "source": [
+        "# Define lists\n",
+        "students = [\"Alice\", \"Bob\", \"Charlie\", \"David\", \"Eve\"]\n",
+        "grades = [85, 90, 78, 92, 90]\n",
+        "\n",
+        "# Remove duplicates from grades list using a set\n",
+        "unique_grades = set(grades)\n",
+        "\n",
+        "# Find the highest grade using \"max()\" function\n",
+        "highest_grade = max(grades)\n",
+        "\n",
+        "# Create the dictionary using zip()\n",
+        "student_grades = dict(zip(students, grades))\n",
+        "\n",
+        "# Find list of student(s) who got the highest grade\n",
+        "top_students = [student for student, grade in student_grades.items() if grade == highest_grade]\n",
+        "\n",
+        "# Print results\n",
+        "print(\"Student Grades Dictionary:\", student_grades)\n",
+        "print(\"Unique Grades Set:\", unique_grades)\n",
+        "print(\"Highest Grade:\", highest_grade)\n",
+        "print(\"Top Student(s):\", top_students)"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
